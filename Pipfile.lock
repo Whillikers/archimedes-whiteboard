@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f3daa76144575d172d3a97b7c6cd35bb6049f910faf918b4a4848ddbefd6b57e"
+            "sha256": "f3fcbb599630abb3619e9a548635e6e997510a790755490f8b4fbc1882df9477"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -54,6 +54,33 @@
                 "sha256:36ee86d5adbabc4fa2643a073f93d5504bdfed37a149a3a49f4dde259f35a750"
             ],
             "version": "==1.13.3"
+        },
+        "opencv-contrib-python": {
+            "hashes": [
+                "sha256:11b2af3c59e13e0d713fb8cf9154dcc59fbe07965d6f67f051469d2bf612cb54",
+                "sha256:7c2186a67fea00d046eead9c02ccb7a520f85906103165e36b27e072d14a1387",
+                "sha256:23c5ea633a8a98cc2fc3e56975ca68ba888c26e5190b8fc90132b09697c3ab3d",
+                "sha256:422d73eb3dbb0cd839bdb3c22faf3e5cf7fbf9805134aa99e748081b910915d1",
+                "sha256:93097af514be8624ed3ab352ef27293083e0e886a13d8bac5636ca12d0688258",
+                "sha256:284f4319f520cb537102e76a07119716c5ac100475870d95e9b769a1ba59e826",
+                "sha256:4b212ae80ffc5205b3eab9cdbf030abe88fa38c06f9b660d861eaf96279c15ed",
+                "sha256:c087a50c688df11f13e201e47c54fce6fc7d752158688e536b114946ef0a77ec",
+                "sha256:9fc5b93b9b4da8775d15c82279c16ef126e38fb38018f0719cfec7758676c70c",
+                "sha256:f015ddb3b881b614be2853093e12e55391f4a7a48d320442d51639c73c7aeaf5",
+                "sha256:47e01c01acb1adf03cb0959aca30dd7ca175e37ad02cbec31eb0fb6cccd3ff83",
+                "sha256:b1d01bc3e2e57b8073c3f8ec1133b8887a81ea5c95eb62477b5982d866aee52a",
+                "sha256:106875530e74624083b63a5af11b6bc708d90470bedc5a36309762d9d28d20d6",
+                "sha256:ef2197eb5e6dd86a3ee2e0d9ff4a89357bd2eee5640e03e3aa1821c95d03d684",
+                "sha256:88b8b5a599379641747f9d27ddd195765ef727b34f2d198800b5fe659e02b687",
+                "sha256:5d1b26370d8e0fbfba93b6b3c800d31e406e53399ebd301da7cef6cea89740b2",
+                "sha256:78493c36a8df6819bff753eb4cce04b38cf95a1f7045822a4e7246d3171c0509",
+                "sha256:b4483c72ec1d1ce857566291701da0f1373b26fc63a961c78bdf8ddf6a39c642",
+                "sha256:bcecef79a62ea1addb02c6ed1ff2d382d09698e6f56c68f5bc8fb0e8ee7c7c52",
+                "sha256:c758d8a0ae3132958aa534a8929c4e8bc3412f622e63ad63a0d0847244437a6e",
+                "sha256:7dc2861a6eb41b1b97b65b2d2a1bdae6f1b33991604bb1ce279c98c59655512d",
+                "sha256:e84d0b49d1e6cc349af0d12524d6d34ff1c7ee68c8767880285659b00e1b8884"
+            ],
+            "version": "==3.3.0.10"
         },
         "opencv-python": {
             "hashes": [
