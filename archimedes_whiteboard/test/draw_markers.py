@@ -1,5 +1,5 @@
 """
-Test board region extraction functions.
+Test board marker detection.
 """
 
 import cv2
