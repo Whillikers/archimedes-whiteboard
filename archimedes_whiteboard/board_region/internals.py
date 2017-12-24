@@ -41,11 +41,12 @@ def get_marker_inverse_transform(corners):
     return cv2.getPerspectiveTransform(corners, new_corners)
 
 
-def normalize_image(image, markers):
+def normalize_image(image):
     """
     Approximately invert the effect of camera perspective to give a "head-on"
-    view of the board given an image and its marker data.
+    view of the board given an image with multiple visible markers.
     """
+    markers = get_all_markers(image)
     corners = markers[0]
     width = len(image[0])
     height = len(image)
