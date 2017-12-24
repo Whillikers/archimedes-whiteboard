@@ -4,6 +4,7 @@ posted ArUco markers.
 """
 
 from archimedes_whiteboard.board_region.internals import (
+    crop_image_to_markers,
     get_all_markers,
     normalize_image
 )
@@ -19,5 +20,5 @@ def get_whiteboard_region_normal(whiteboard_image):
 
 
 __all__ = [
-    'get_all_markers', 'normalize_image'
+    'get_all_markers', 'normalize_image', 'crop_image_to_markers'
 ]

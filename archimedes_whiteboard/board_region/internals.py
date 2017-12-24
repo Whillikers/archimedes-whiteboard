@@ -61,3 +61,26 @@ def normalize_image(image):
     avg_transform /= len(transforms)
 
     return cv2.warpPerspective(image, avg_transform, (width, height))
+
+
+def crop_image_to_markers(image):
+    """
+    Crop an image with four visible markers to the outer boundary of the
+    rectangle defined by those markers.
+
+    Assumes that the image lacks significant rotation (i.e. it is normalized).
+    """
+    markers = get_all_markers(image)
+    markers_corners = markers[0]
+
+    corners_x, corners_y = [], []
+    for corners in markers_corners:
+        for corner in corners[0]:
+            corners_x.append(corner[0])
+            corners_y.append(corner[1])
+    left_edge = int(min(corners_x))
+    right_edge = int(max(corners_x))
+    top_edge = int(min(corners_y))
+    bottom_edge = int(max(corners_y))
+
+    return image[top_edge:bottom_edge, left_edge:right_edge]
