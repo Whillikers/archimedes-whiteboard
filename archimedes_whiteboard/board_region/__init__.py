@@ -16,9 +16,14 @@ def get_whiteboard_region_normal(whiteboard_image):
     and get an approximated "head on" view by undoing the camera's
     perspective transform.
     """
-    pass
+    normal = normalize_image(whiteboard_image)
+    cropped = crop_image_to_markers(normal)
+    return cropped
 
 
 __all__ = [
-    'get_all_markers', 'normalize_image', 'crop_image_to_markers'
+    'get_whiteboard_region_normal',
+    'get_all_markers',
+    'normalize_image',
+    'crop_image_to_markers'
 ]
