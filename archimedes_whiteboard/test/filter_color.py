@@ -12,9 +12,7 @@ from archimedes_whiteboard.commands import region_extraction
 img = cv2.imread('../sample_images/1-straight.jpg')
 
 # Target blue, default tolerances
-hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-filtered = region_extraction.filter_to_color(hsv, 120)
-
+filtered = region_extraction.filter_to_color(img, 120)
 resized = cv2.resize(filtered,
                      (1600, int(1600 * len(filtered) / len(filtered[0]))))
 

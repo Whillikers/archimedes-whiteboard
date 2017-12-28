@@ -16,7 +16,7 @@ def filter_to_color(image, target_hue, tol_hue=35, min_saturation=10,
     of saturation at least min_saturation, and of value at least min_value.
 
     :param image: the input image
-    :type image: opencv hsv image
+    :type image: opencv bgr image
     :param target_hue: the hue to be detected
     :type target_hue: number
     :param tol_hue: range of acceptable hues around the target color
@@ -26,8 +26,9 @@ def filter_to_color(image, target_hue, tol_hue=35, min_saturation=10,
     :param min_value: minimum value to detect the color
     :type min_value: number
     :returns: an image only containing pixels that are the specified color
-    :rtype: opencv hsv image
+    :rtype: opencv grayscale image
     """
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     low_color = np.array([target_hue - tol_hue, min_saturation, min_value])
     high_color = np.array([target_hue + tol_hue, 255, 255])
     return cv2.inRange(image, low_color, high_color)
