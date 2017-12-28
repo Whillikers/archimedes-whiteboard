@@ -80,7 +80,7 @@ def normalize_image(image):
 def crop_image_to_markers(image):
     """
     Crop an image with multiple ArUco markers to the outer rectangular region
-    of those markers.
+    of those markers and white out the markers.
 
     Assumes only one marked region is present in the image, the region is
     roughly rectangular, and the region is not rotated much (i.e. it is
@@ -99,6 +99,14 @@ def crop_image_to_markers(image):
         for corner in corners[0]:
             corners_x.append(corner[0])
             corners_y.append(corner[1])
+
+        # White out marker
+        image = cv2.rectangle(image,
+                              (corners[0][0][0], corners[0][0][1]),
+                              (corners[0][2][0], corners[0][2][1]),
+                              (255, 255, 255),
+                              thickness=-1)  # Indicates fill
+
     left_edge = int(min(corners_x))
     right_edge = int(max(corners_x))
     top_edge = int(min(corners_y))
