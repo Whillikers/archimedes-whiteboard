@@ -19,8 +19,8 @@ filtered = region_extraction.filter_to_color(normalized, 180,
                                              min_value=150)
 
 rectangles = region_extraction.get_rectangular_boxes(filtered,
-                                                     blur_size=41,
-                                                     dilate_size=0)
+                                                     blur_size=21,
+                                                     dilate_size=5)
 
 blank = np.zeros((len(filtered), len(filtered[0])), np.uint8)
 

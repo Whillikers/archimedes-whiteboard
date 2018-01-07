@@ -37,8 +37,8 @@ def filter_to_color(image, target_hue, tol_hue=35, min_saturation=10,
 def get_rectangular_boxes(image,
                           max_dist_fraction=0.05,
                           min_size=1000,
-                          blur_size=0,
-                          dilate_size=0):
+                          blur_size=21,
+                          dilate_size=5):
     """
     Find all rectangular boxes in an image.
 
