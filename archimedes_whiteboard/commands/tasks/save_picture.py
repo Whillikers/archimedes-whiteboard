@@ -29,4 +29,5 @@ class SavePicture(command.Command, yaml.YAMLObject):
         """
         name = time.strftime('%Y-%m-%d,%H:%M:%S', time.gmtime())
         path = self.directory + '/' + name + ',' + str(self.img_id) + '.png'
+        self.img_id += 1
         cv2.imwrite(path, command_region)
