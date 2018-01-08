@@ -10,7 +10,8 @@ class Command():
     Base class for commands that act on whiteboard regions.
 
     Not to be instantiated directly; use only as a base class for other
-    commands.
+    commands. All commands cannot be instantiated directly; objects are
+    created through YAML config.
     """
 
     # Color parameters

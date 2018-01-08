@@ -11,6 +11,8 @@ from archimedes_whiteboard.commands import command
 class SavePicture(command.Command, yaml.YAMLObject):
     """
     Command that saves identified regions as images locally.
+
+    Cannot be instantiated directly; objects are created through YAML config.
     """
 
     yaml_tag = u'!SavePicture'
