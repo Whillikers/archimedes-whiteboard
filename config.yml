@@ -1,0 +1,9 @@
+# Configure a whiteboard setup and command bindings
+
+# Configure all commands
+--- !SavePicture
+target_hue: 180
+tol_hue: 20
+min_saturation: 30
+min_value: 150
+directory: '../output' # Relative to the base directory
