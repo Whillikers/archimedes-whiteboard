@@ -1,5 +1,3 @@
-# Configure a whiteboard setup and command bindings
-
 # Configure all commands
 --- !SavePicture
 target_hue: 180
