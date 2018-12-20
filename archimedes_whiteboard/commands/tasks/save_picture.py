@@ -30,6 +30,6 @@ class SavePicture(command.Command, yaml.YAMLObject):
         :type command_region: opencv bgr image
         """
         name = time.strftime('%Y-%m-%d,%H:%M:%S', time.gmtime())
-        path = self.directory + '/' + name + ',' + str(self.img_id) + '.png'
+        path = self.directory + '/' + name + '_' + str(self.img_id) + '.png'
         self.img_id += 1
         cv2.imwrite(path, command_region)
