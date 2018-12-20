@@ -3,7 +3,7 @@ Tools for detecting, extracting, and normalizing the whiteboard region from
 posted ArUco markers.
 """
 
-from archimedes_whiteboard.board_region.internals import (
+from archimedes_whiteboard.board_region.board_region import (
     crop_image_to_markers,
     get_all_markers,
     normalize_image
