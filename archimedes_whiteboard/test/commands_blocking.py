@@ -18,6 +18,9 @@ command.cooldown_frames = 3
 command.block_clear_frames = 3
 
 command.act_on_frame(normalized)  # Should act on all boxes
-for _ in range(3):
+for _ in range(5):
     command.act_on_frame(normalized)  # Should do nothing
+blocked = command.get_image_blocked(normalized)
+for _ in range(5):
+    command.act_on_frame(blocked)  # Should do nothing, but unblocks
 command.act_on_frame(normalized)  # Should act on all boxes
