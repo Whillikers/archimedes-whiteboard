@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 '''
-    generate_marker.py
+generate_marker.py
 
-    Generates an ArUco marker image from the 6X6_250 OpenCV dictionary of a
-    given id with 700 border pixels. See: www.philipzucker.com/aruco-in-opencv/
+Generates an ArUco marker image from the 6X6_250 OpenCV dictionary of a
+given id with 700 border pixels. See: www.philipzucker.com/aruco-in-opencv/
 '''
 
 import cv2

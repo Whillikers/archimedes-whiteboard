@@ -1,10 +1,10 @@
-"""
+'''
 Test the commands backend and config loading.
-"""
+'''
 
 import yaml
 import cv2
-from archimedes_whiteboard.commands.tasks import save_picture
+from archimedes_whiteboard.commands.tasks import save_picture  # NOQA
 from archimedes_whiteboard.board_region import get_whiteboard_region_normal
 
 img = cv2.imread('../sample_images/2-thicklines-angled.jpg')

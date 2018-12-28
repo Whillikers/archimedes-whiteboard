@@ -1,6 +1,6 @@
-"""
+'''
 Test the Block_Region class.
-"""
+'''
 
 import cv2
 from archimedes_whiteboard.commands import region_extraction
@@ -17,8 +17,8 @@ blocked = region.mask_region(resized)
 
 cv2.imshow('blocked', blocked)
 
-print('Base image clear?', region.are_corners_clear(resized))
-print('Masked image clear?', region.are_corners_clear(blocked))
+print('Base image clear?', region._are_corners_clear(resized))
+print('Masked image clear?', region._are_corners_clear(blocked))
 
 while True:
     if cv2.waitKey(1) == ord('q'):

@@ -1,9 +1,9 @@
-"""
+'''
 Test color filtering.
 
 Useful for trying different threshold values for color filters to catch
 different pen colors.
-"""
+'''
 
 import cv2
 from archimedes_whiteboard.commands import region_extraction

@@ -1,19 +1,55 @@
-"""
+'''
 Implements Command abstract base class.
-"""
+'''
 
-from archimedes_whiteboard.commands import region_extraction
+from archimedes_whiteboard.commands.region_extraction import \
+    (filter_to_color, get_rectangular_boxes)
 from archimedes_whiteboard.commands.block_region import Block_Region
 
 
 class Command():
-    """
+    '''
     Base class for commands that act on whiteboard regions.
 
     Not to be instantiated directly; use only as a base class for other
     commands. All commands cannot be instantiated directly; objects are
     created through YAML config.
-    """
+
+    Attributes
+    ----------
+    yaml_tag : unicode string
+        YAML tag of this command. Used internally to map from YAML sections
+        to classes and should be distinct for each different type of command.
+
+    Parameters
+    ----------
+    target_hue : number
+        The hue to be detected.
+    tol_hue (optional) : number
+        Range of acceptable hues around the target color.
+    min_saturation (optional) : number
+        Minimum saturation to detect the color.
+    min_value (optional) : number
+        Minimum value to detect the color.
+    max_dist_fraction (optional) : number in [0, 1]
+        Maximum distance the detected rectangle can be from the original
+        contour as a fraction of contour perimeter.
+    box_min_size (optional) : int
+        Minimum area of a box to be detected (pixels).
+    blur_size (optional) : odd int
+        Size of gaussian blur to apply; used for denoising.
+    dilate_size (optional) : int
+        Size of dilation to apply; used for closing holes.
+    cooldown_frames (optional) : positive int
+        Absolute minimum number of frames before unblocking this region.
+    block_clear_frames (optional) : positive int
+        Number of frames for which corners must be clear before unblocking.
+    block_clear_pixels (optional) : positive int
+        Number of pixels surrounding target corners in each direction that
+        must all be clear to unblock.
+    '''
+
+    yaml_tag = u'!Command'
 
     # Color parameters
     target_hue = None  # Mandatory
@@ -28,46 +64,37 @@ class Command():
     dilate_size = 5
 
     # Blocking parameters
-    blocked_regions = []    # Block_Regions that must be not colored to unblock
-    cooldown_frames = 30    # Frames after a command before possibly unblocking
-    block_clear_frames = 5  # Frames corners must be clear before unblocking
-    block_clear_pixels = 10  # Pixels surrounding target corners to unblock
+    blocked_regions = []
+    cooldown_frames = 30
+    block_clear_frames = 5
+    block_clear_pixels = 10
 
-    yaml_tag = u'!Command'
-
-    def __init__(self, target_hue, min_saturation=10, min_value=50,
-                 max_dist_fraction=0.05, box_min_size=1000, blur_size=21,
-                 dilate_size=5, cooldown_frames=30, block_reset_frames=5,
-                 block_clear_pixels=10):
-        """
-        Load the command's configuration.
-        """
-        self.target_hue = target_hue
-        self.min_saturation = min_saturation
-        self.min_value = min_value
-        self.max_dist_fraction = max_dist_fraction
-        self.box_min_size = box_min_size
-        self.blur_size = blur_size
-        self.dilate_size = dilate_size
-        self.cooldown_frames = cooldown_frames
-        self.block_reset_frames = block_reset_frames
-        self.block_clear_pixels = block_clear_pixels
-        self.blocked_regions = []
-
-    def evaluate(self, command_region):
-        """
+    def _evaluate(self, command_region):
+        '''
         Implement this command's behavior when acting on a region.
 
-        :param command_region: an image of the region to act on
-        :type command_region: opencv bgr image
-        """
+        Parameters
+        ----------
+        command_region : opencv bgr image
+            An image of the region to act on.
+        '''
         pass
 
-    def get_image_blocked(self, image):
-        """
+    def _get_image_blocked(self, image):
+        '''
         Given an image, update all Block_Regions and return the image with all
         blocked areas masked in white.
-        """
+
+        Parameters
+        ----------
+        image : opencv bgr image
+            A normalized image of the full whiteboard.
+
+        Returns
+        -------
+        opencv bgr image
+            The input image, with all Block_Regions masked in white.
+        '''
         new_image = image.copy()
 
         for region in self.blocked_regions:
@@ -80,28 +107,30 @@ class Command():
         return new_image
 
     def act_on_frame(self, image):
-        """
+        '''
         Given an image, find all regions that correspond to this command
         and act on them.
 
         Assumes that image is normalized.
         Uses, updates, and creates Block_Regions.
 
-        :param image: the input image
-        :type image: opencv bgr image
-        """
-        blocked = self.get_image_blocked(image)
-        filtered = region_extraction.filter_to_color(blocked,
-                                                     self.target_hue,
-                                                     self.tol_hue,
-                                                     self.min_saturation,
-                                                     self.min_value)
+        Parameters
+        ----------
+        image : opencv bgr image
+            The input image.
+        '''
+        blocked = self._get_image_blocked(image)
+        filtered = filter_to_color(blocked,
+                                   self.target_hue,
+                                   self.tol_hue,
+                                   self.min_saturation,
+                                   self.min_value)
 
-        boxes = region_extraction.get_rectangular_boxes(filtered,
-                                                        self.max_dist_fraction,
-                                                        self.box_min_size,
-                                                        self.blur_size,
-                                                        self.dilate_size)
+        boxes = get_rectangular_boxes(filtered,
+                                      self.max_dist_fraction,
+                                      self.box_min_size,
+                                      self.blur_size,
+                                      self.dilate_size)
 
         regions = []
         for box in boxes:
@@ -122,4 +151,4 @@ class Command():
             self.blocked_regions.append(block)
 
         for region in regions:
-            self.evaluate(region)
+            self._evaluate(region)

@@ -1,6 +1,6 @@
-"""
+'''
 Test board region normalization.
-"""
+'''
 
 import cv2
 from archimedes_whiteboard import board_region
