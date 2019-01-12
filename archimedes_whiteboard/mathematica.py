@@ -31,7 +31,7 @@ def run_mathematica(command):
     with NamedTemporaryFile() as f:
         f.write(bytes(print_command, 'utf-8'))
         f.seek(0)
-        output = check_output(['math', '-script', f.name])
+        output = check_output(['wolfram', '-script', f.name])
 
     if not output:
         raise RuntimeError('Invalid Mathematica code')
