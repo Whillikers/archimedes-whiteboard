@@ -9,7 +9,7 @@ Session.vim
 tags
 
 # Private data
-keys.txt
+credentials.py
 
 # Python built files
 __pycache__
