@@ -10,7 +10,7 @@ from matplotlib import pyplot as plt
 from archimedes_whiteboard.commands import region_extraction
 from archimedes_whiteboard.board_region import get_whiteboard_region_normal
 
-img = cv2.imread('../sample_images/2-thicklines-angled.jpg')
+img = cv2.imread('../sample_images/sideangle_highres.jpg')
 normalized = get_whiteboard_region_normal(img)
 
 filtered = region_extraction.filter_to_color(normalized, 180,

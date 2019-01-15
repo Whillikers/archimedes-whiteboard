@@ -6,7 +6,7 @@ import cv2
 from archimedes_whiteboard import board_region
 
 
-img = cv2.imread('../sample_images/1-angled.jpg')
+img = cv2.imread('../sample_images/sideangle_highres.jpg')
 
 markers = board_region.get_all_markers(img)
 corners, ids, rejected = markers

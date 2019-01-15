@@ -9,7 +9,7 @@ import cv2
 from archimedes_whiteboard.commands import region_extraction
 
 
-img = cv2.imread('../sample_images/1-straight.jpg')
+img = cv2.imread('../sample_images/sideangle_highres.jpg')
 
 # Target blue, default tolerances
 filtered = region_extraction.filter_to_color(img, 120)

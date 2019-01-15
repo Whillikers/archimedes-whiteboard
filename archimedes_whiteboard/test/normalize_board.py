@@ -6,7 +6,7 @@ import cv2
 from archimedes_whiteboard import board_region
 
 
-img = cv2.imread('../sample_images/1-angled.jpg')
+img = cv2.imread('../sample_images/sideangle_highres.jpg')
 normalized = board_region.get_whiteboard_region_normal(img)
 resized = cv2.resize(normalized,
                      (1600, int(1600 * len(normalized) / len(normalized[0]))))
