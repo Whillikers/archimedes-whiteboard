@@ -88,7 +88,7 @@ def normalize_image(image):
         avg_transform += transform
     avg_transform /= len(transforms)
 
-    return cv2.warpPerspective(image, avg_transform, (width, height))
+    return cv2.warpPerspective(image, avg_transform, (width * 2, height * 2))
 
 
 def crop_image_to_markers(image):
